@@ -1,0 +1,165 @@
+
+what is jenkins ?
+
+ "The leading open source automation server,
+ provides 1000+ of plugins to support building 
+ and automating any project"
+ 
+   -https://jenkins.io
+
+
+ -> continous integration & continous delivery tool
+
+------------------------------------------------------
+
+ who use it ?
+
+  Anyone who works on a s/w dev project
+
+   -> Appln developer
+   -> Web developer
+   -> IT Opeartions
+   -> System Engineers
+   -> DevOps Engineers
+
+------------------------------------------------------
+
+what's so great about it ?
+
+    -> It's Open Source!
+    -> It works for most people
+    -> It's easy to setup and configure
+    -> It's highly flexible with ton of plugins support
+    -> Works in just about any envi
+    -> It dosen't use a lot of resources
+
+------------------------------------------------------
+
+
+what's covered in this course ?
+
+
+    -> CI and CD discussion
+    -> Installing Jenkins and Pre-Req
+    -> Configuring and Securing Jenkins
+    -> Basic Projects - configuration and concepts
+    -> Folder and Views
+    -> Working with plugins
+    -> The Pipeline ( Work Flow )
+    -> Testing
+    -> Reporting
+    -> Notifications
+    -> REST Interface
+    -> Jenkins CLI
+
+        --- And More
+
+------------------------------------------------------
+
+
+
+
+CI and CD - concepts
+
+
+
+what is Continuous Integration ?
+
+
+" It's s/w development practice where contributors
+ are integrating their work very frequently. 
+ This results in multiple daily integrations to a mainline.
+ Automated testing(post commit promotion) is commonly used.
+
+
+ Keys and Assumption
+
+ -> People often complain it cant work in thier envi
+ -> It's easier than then realize
+ -> Once Adopted, people often wondor how they lived without it
+ -> Assumes a high degree of testing - Unit/Integration Testing
+
+
+ Basic Work-Flow
+
+ -> Checkout from SCM ( like git)
+ -> Branch and make local changes
+ -> Add or change tests as necessary
+ -> Trigger automated build locally
+ -> If successfull, consider commiting
+ -> Update with latest from mainline
+ -> Push changes, build and test on integration machine
+
+
+ Best Practices
+
+ -> Maintain a single source repository
+ -> Have a common mainline-Branch ( usually master )
+ -> Automate the Build
+ -> Minimize potential for user errors, automate everthing possible
+ -> Make the Build self-Testing 
+ -> Everyone commits Frequently ( at least daily preferably)
+ -> Communiction is Key
+ -> Frequent merges will help avoid conflict errors.
+ -> Build Every commit
+ -> Prioritize fixing broken builds
+ -> Keep your builds fast
+ -> Testing envi should be as close to prod as possible
+ -> Make it easy for anyone to get the latest
+ -> Keep it open, everyone should see what's happening
+ -> automate deployment
+
+
+
+
+ what is continous-delivery?
+
+
+    A s/w development discipline 
+    where s/w is built so that 
+    it can be released to production at any time.
+
+
+   keys and Assumptions
+
+   -> s/w is always deployable throughout SDLC
+   -> Not breaking the build 
+      is prioritized over adding features
+   -> Feedback is fast & production readiness is known
+   -> Close/collaboratiive working r/s
+
+
+
+
+   CI vs CD
+
+   -> CD is the ability to release at any time
+   -> CI is just the practice of inhtegrating code continously
+
+
+   Continuous Delivery vs Continuous Deployment
+
+
+   -> C-Delivery means the code can be released at any time.
+   -> C-Deployment means that code IS released 
+      continously as part of an automated Pipeline
+
+
+-------------------------------------------------------------
+
+
+Installing and Configuring Jenkins
+
+
+
+    > Java -version ==> 1.8
+
+
+
+
+
+
+
+
+
+

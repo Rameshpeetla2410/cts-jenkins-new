@@ -1,0 +1,118 @@
+
+
+#1
+
+STEP 1: INSTALL DOCKER TOOLBOX
+
+    > docker ps
+    > docker info
+
+
+STEP 2: FIND YOUR IP ADDRESS
+
+    > docker-machine ip default
+
+STEP 3: PULL AND RUN THE CLOUDBEES JENKINS CONTAINER
+
+    > docker pull jenkins
+    > docker run -p 8080:8080 --name=jenkins-master jenkins        
+    
+
+STEP 4: MAKING THIS A LITTLE MORE PRACTICAL
+
+    A. DAEMONIZING
+    
+    > docker rm jenkins-master
+    > docker run -p 8080:8080 --name=jenkins-master -d jenkins
+
+
+    B. MEMORY SETTINGS
+
+    > docker stop jenkins-master
+    > docker rm jenkins-master
+
+    > docker run -p 8080:8080 --name=jenkins-master -d --env JAVA_OPTS="-Xmx8192m" jenkins
+
+    if < JDK 1.8
+
+    > docker run -p 8080:8080 --name=jenkins-master -d --env JAVA_OPTS=”-Xmx8192m -XX:PermSize=256m -XX:MaxPermSize=1024m” jenkins
+
+    C. UPPING CONNECTION POOL
+
+    > docker stop jenkins-master
+    > docker rm jenkins-master
+    > docker run -p 8080:8080 --name=jenkins-master -d --env JAVA_OPTS="-Xmx8192m" --env JENKINS_OPTS="--handlerCountMax=300" jenkins
+
+
+#2
+
+
+   A JENKINS BASE IMAGE WRAPPER
+
+    1.Create a working directory.
+    2.In your favorite text editor, create a new file called “Dockerfile.”
+    3.Add the following to the file and save it:
+
+    FROM jenkins:2.446.1
+    MAINTAINER yourname
+    
+    Then at the command line enter:
+    
+    > docker build -t myjenkins .
+
+
+    1.In your Dockerfile add the following lines after the “MAINTAINER” line:
+
+    ENV JAVA_OPTS="-Xmx8192m"
+    ENV JENKINS_OPTS="--handlerCountStartup=100 --handlerCountMax=300"
+
+
+    Save and rebuild your image: 
+    
+    > docker build -t myjenkins .
+
+    > docker stop jenkins-master
+    > docker rm jenkins-master
+    > docker run -p 8080:8080 --name=jenkins-master -d myjenkins
+
+
+    SETTING UP A LOG FOLDER
+
+    add
+
+      RUN mkdir /var/log/jenkins 
+
+      to Dockerfile
+
+
+
+      > docker build -t myjenkins .
+
+
+
+      1.Before your RUN mkdir line add:
+        USER root
+      2.​After your RUN mkdir line add: 
+        RUN chown -R  jenkins:jenkins /var/log/jenkins
+      3.After your RUN chown line add: 
+        USER jenkins
+
+        > docker build -t myjenkins .
+
+
+       In your Dockerfile edit the JENKINS_OPTS line to look like this:
+
+       ENV JENKINS_OPTS="--handlerCountMax=300 --logfile=/var/log/jenkins/jenkins.log" 
+
+       > docker build -t myjenkins .
+       > docker stop jenkins-master
+       > docker rm jenkins-master
+       > docker run -p 8080:8080 --name=jenkins-master -d myjenkins
+
+
+       > docker exec jenkins-master tail -f /var/log/jenkins/jenkins.log
+
+       // to get logs
+
+       > docker cp jenkins-master:/var/log/jenkins/jenkins.log jenkins.log
+       > cat jenkins.log

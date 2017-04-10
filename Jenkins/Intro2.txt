@@ -1,0 +1,299 @@
+
+
+what is Jenkins ?
+
+ -> is CI and Build server
+ -> is used to manually,periodically, 
+    or automatically build s/w development 
+    projects
+
+ -> is an open source CI tool written java
+ -> is used by teams of all different sizes,
+    for projects with various languages 
+
+----------------------------------------------
+
+why is popular?
+
+ -> Easy to used
+ -> Great Extensibility
+        - Support different version control system
+        - code quality metrics
+        - Build notifiers
+        - UI customization
+ 
+----------------------------------------------
+
+ The History Jenkins
+
+    Hudson  ===> Jenkins
+
+----------------------------------------------
+
+
+Install Java 
+
+
+   -> Jenkins require java 1.8
+
+
+   > java -version
+
+----------------------------------------------
+
+JAVA_HOME env variable
+
+
+
+in MAC
+
+    vi ~/.bash_profile
+
+    export JAVA_HOME=...
+
+----------------------------------------------
+
+Intalling Jenkins
+
+----------------------------------------------
+        
+Jenkins' Master and Slave Arc
+
+
+Master
+
+       -> schedule build jobs
+       -> Dispatch Builds to the slaves 
+          for the actual job execution
+       -> Monitor the slaves and record the build results
+       -> can also execute build jobs directly
+
+Slave
+
+       -> Execute build jobs dispached by the Master
+
+
+----------------------------------------------------------------
+
+Jenkins Terminology
+
+
+    1.Job / Project
+
+        -> runnable tasks that are controlled/monotored by Jenkins
+
+
+    2. Slave/Node
+
+        -> Slaves are computers that 
+           are set up to build projects for a Master
+       
+        -> Jenkins runs a separate program 
+           called "slave agent" on slaves 
+
+        -> When slaves are registered to a master, 
+           a master starts distribute loads to slaves
+
+        -> Node is used to refer to all machines that are part of jenkins grid,
+           slaves and master.
+
+     3. Executor
+
+         -> is separate stream of builds to be run on a node in parallel.
+         -> A Node can have one or more executors.
+
+     4. Build
+
+         -> A build is result of one of the projects.
+
+     5. Plugin
+
+        --> piece of s/w that extends the core 
+            functinality of the core jenkis-server   
+
+----------------------------------------------------------------
+
+
+Jenkins UI Overview
+
+
+    ==> all Web console UI menu
+
+----------------------------------------------------------------
+
+
+Create our First Jenkins Job
+
+----------------------------------------------------------------
+
+Run our First Jenkins Job
+
+----------------------------------------------------------------
+
+
+Install Git and GitHub plugin
+
+
+
+  > git --version
+
+----------------------------------------------------------------
+
+Install and Configure Maven
+
+
+    -> Java Build Tools ( Ant , Maven , Gradle )
+
+    -> Install Maven
+
+        -> download maven zip ( maven.apache.org)
+        -> extract to known location
+
+    -> set PATH to /bin
+
+
+    e.g in MAC OX X
+
+    export PATH=../bin:$PATH
+    
+
+    verify
+
+    > mvn -v
+
+----------------------------------------------------------------
+
+
+Configure Jenkins for out Maven based-based project
+
+
+    -> Global Tool configuration
+    
+        -> Add JDK
+        -> Add Git
+        -> Add Maven
+
+----------------------------------------------------------------
+
+Create our Maven-based Jenkins Project
+
+
+    repo : https://github.com/jleetutorial/maven-project
+
+
+    -> Understanding basic Maven based projects
+    -> maven life-cycle and phases
+
+----------------------------------------------------------------
+
+Run our  Maven-based Jenkins Project
+
+    -> explore console
+    -> explore workspace
+
+----------------------------------------------------------------
+
+
+Configure Jenkins to pol source code changes periodically
+
+
+
+  cron syntax
+
+  -> minute ( 0-59 )
+  -> hour   ( 0-23 )
+  -> day of month ( 1- 31 )
+  -> month        ( 1-12 )
+  -> day of week ( 0-6 ) ( Sunday = 0 )
+
+
+  To specify multiple values for one field
+
+  *  --> all valid values
+
+  M-N --> a range of values
+
+  A,B,Z  --> enumurate multiple values
+
+
+
+  e.g
+
+
+    0 0 * * *  --> every day at midnight
+    0 2-4 * * * --> 2am,3am and 4am every day
+
+
+
+
+ --> change project and do new commit with repo
+
+    
+Generate SSH Keyes  for Git
+
+https://help.github.com/articles/connecting-to-github-with-ssh/
+
+
+
+ ---------------------------------------------------
+
+
+ Other Build Triggers Jenkins
+
+
+
+  when to use scheduled build ( build periodically option )?
+
+
+  -> Very long running build jobs,where quick feedback is less critical.
+  -> Some intensive load and performance tests which may take several hours to run.
+  
+
+
+---------------------------------------------------
+
+
+Jenkins code Quality metrics report
+
+
+  --> checkstyle : code Quality check tool 
+
+
+---------------------------------------------------
+
+Archive Build Artifacts
+
+
+ Compile,Test,Package  ==> Staging for QE testing
+
+               
+                     Artifact
+
+---------------------------------------------------
+
+Installing Tomcat and Run
+
+
+    -> sudo chmod +x *  ( in MAC , for executable permission )
+
+    --> create Tomcat-User file role and User
+
+---------------------------------------------------
+
+Deploy to staging Envi
+
+
+  -> install copy artifact & deploy to container plugins
+
+
+  --> rename project name
+
+
+
+---------------------------------------------------
+
+
+Jenkins Build Pipeline
+
+
+---------------------------------------------------
